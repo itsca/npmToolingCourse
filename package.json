@@ -8,23 +8,25 @@
   },
   "author": "Javier Escalante",
   "babel": {
-  	"presets": [
-  		"es2015"
-  	]
+    "presets": [
+      "es2015"
+    ]
   },
   "scripts": {
-    "serve-dev": "live-server builds/development",
-    "prod-setup": "mkdirp builds/production/js",
-    "start": "npm run serve-dev",
-    "prestart": "npm run prod-setup",
-    "sass-dev": "node-sass --watch components/scss --output-style expanded --source-map true components/scss/style.scss --output builds/development/css",
-    "js-transform" : "babel components/js/**/*.js --watch --out-file builds/development/js/script.js --source-maps"
+  	"start": "npm-run-all --parallel dev:*",
+    "dev:serve-dev": "live-server builds/development",
+    "dev:sass-dev": "node-sass --watch components/scss --output-style expanded --source-map true components/scss/style.scss --output builds/development/css",
+    "dev:js-transform": "babel components/js/**/*.js --watch --out-file builds/development/js/script.js --source-maps",
+  	
+  	"prod-setup": "mkdirp builds/production/js"
+
   },
   "devDependencies": {
     "babel-cli": "^6.22.2",
     "babel-preset-es2015": "^6.22.0",
     "live-server": "^1.2.0",
     "mkdirp": "^0.5.1",
-    "node-sass": "^4.5.0"
+    "node-sass": "^4.5.0",
+    "npm-run-all": "^4.0.1"
   }
 }
